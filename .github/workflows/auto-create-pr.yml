@@ -1,0 +1,32 @@
+name: Auto Create Pull Requests
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  create_pull_requests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branch:
+          - { source: 'main', target: '1' }
+          - { source: 'main', target: '2' }
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v3
+
+    - name: Create Pull Request
+      id: create_pr
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.ER_TOKEN }}
+        base: ${{ matrix.branch.target }}
+        head: ${{ matrix.branch.source }}
+        title: "[SHOW] Release v2.8.1 to ${{ matrix.branch.target }}"
+        body: |
+          Auto-generated PR from `{{ matrix.branch.source }}` to `{{ matrix.branch.target }}`.
+        draft: false
+        assignees: 'elvikito'
+        reviewers: 'elvikito'
