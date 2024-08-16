@@ -27,6 +27,6 @@ jobs:
         title: "[SHOW] Release v2.8.1 to ${{ matrix.branch.target }}"
         body: |
           Auto-generated PR from `{{ matrix.branch.source }}` to `{{ matrix.branch.target }}`.
-        draft: false
+        draft: true 
         assignees: 'elvikito'
         reviewers: 'elvikito'
