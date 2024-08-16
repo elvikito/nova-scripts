@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Checkout the repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Create Pull Request
       id: create_pr
@@ -23,7 +23,7 @@ jobs:
       with:
         token: ${{ secrets.ER_TOKEN }}
         base: ${{ matrix.branch.target }}
-        head: ${{ matrix.branch.source }}
+        branch: ${{ matrix.branch.source }}
         title: "[SHOW] Release v2.8.1 to ${{ matrix.branch.target }}"
         body: |
           Auto-generated PR from `{{ matrix.branch.source }}` to `{{ matrix.branch.target }}`.
