@@ -10,8 +10,8 @@ jobs:
     strategy:
       matrix:
         branch:
-          - { source: 'main', target: '1' }
-          - { source: 'main', target: '2' }
+          - { source: '1', target: 'main' }
+          - { source: '2', target: 'main' }
 
     steps:
     - name: Checkout the repository
